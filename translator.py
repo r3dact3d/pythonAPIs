@@ -21,6 +21,7 @@ def hitAPI(langList, params):
     page = requests.get(url, params=params)
     if page.status_code == 200:
         j = page.json()
+        print "#######################################################"
         print(j['contents']['translated'])
         exit()
     else:
@@ -36,10 +37,3 @@ else:
         text = text +" " + i
     params = {'text' : text}     
     hitAPI(langList, params)
-
-#url = 'http://api.funtranslations.com/translate/' + lang + '.json'
-#page = requests.get(url, params=params)
-#print page.url
-#j = page.json()
-#print "#######################################################"
-#print j['contents']['translated']
