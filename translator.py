@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# writtent by brady [r3dact3d]
+# Include what you want to translate after calling script
 import requests
 import json
 from sys import argv
