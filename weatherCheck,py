@@ -1,0 +1,53 @@
+#!/usr/bin/env python
+# written by brady [r3dact3d]
+import requests
+import untangle
+import tzlocal
+import pytz
+from sys import argv
+from datetime import datetime
+from dateutil import tz
+
+script, zipCode = argv
+payload = {
+'zip': zipCode,
+'APPID': '2f94a6d3d2786a3c7a6b71815be3cb4f',
+'units': 'imperial',
+'mode' : 'xml'
+}
+data = requests.get('http://api.openweathermap.org/data/2.5/weather', params=payload).text
+cooked = untangle.parse(data)
+stew = cooked.current
+########################################################
+## Convert TimeZone from UTC to CST
+########################################################
+rise = stew.city.sun['rise']
+down = stew.city.sun['set']
+riseNew = rise.replace("T"," ")
+downNew = down.replace("T"," ")
+from_zone = tz.tzutc()
+to_zone = tz.tzlocal()
+utcRise = datetime.strptime(riseNew, '%Y-%m-%d %H:%M:%S')
+utcDown = datetime.strptime(downNew, '%Y-%m-%d %H:%M:%S')
+utcRise = utcRise.replace(tzinfo=from_zone)
+utcDown = utcDown.replace(tzinfo=from_zone)
+cstRise = utcRise.astimezone(to_zone)
+cstDown = utcDown.astimezone(to_zone)
+##########################################################
+##########################################################
+print '=================================='
+print '|   ' + stew.city['name'] + '    |'
+print '=================================='
+print '| current condition = ' + stew.weather['value']
+print '| current temp      = ' + stew.temperature['value']
+print '| low temp          = ' + stew.temperature['max']
+print '| high temp         = ' + stew.temperature['min']
+print '=================================='
+print '| current humidity  = ' + stew.humidity['value'] + stew.humidity['unit']
+print '| visibility        = ' + stew.clouds['name']
+print '| wind speed        = ' + stew.wind.speed['name']
+print '| wind direction    = ' + stew.wind.direction['name']
+print '=================================='
+print '| sun rise          = ' + str(cstRise)
+print '| sun down          = ' + str(cstDown)
+print '=================================='
