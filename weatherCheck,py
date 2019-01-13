@@ -40,8 +40,8 @@ print '|   ' + stew.city['name'] + '    |'
 print '=================================='
 print '| current condition = ' + stew.weather['value']
 print '| current temp      = ' + stew.temperature['value']
-print '| low temp          = ' + stew.temperature['max']
-print '| high temp         = ' + stew.temperature['min']
+print '| low temp          = ' + stew.temperature['min']
+print '| high temp         = ' + stew.temperature['max']
 print '=================================='
 print '| current humidity  = ' + stew.humidity['value'] + stew.humidity['unit']
 print '| visibility        = ' + stew.clouds['name']
