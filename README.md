@@ -15,3 +15,7 @@ you would like to use to translate.
 Python script that takes a zipcode as an argument, then prints out some current weather stats.
 You will need to get your own api key from the link provided.
 Also, script requires untangle and tzlocal to be installed via pip.
+
+## spaceWhois.py
+### http://api.open-notify.org/astros.json
+Fun little Python script that returns how many Humans are currently in space, their names, and Space Craft.
