@@ -1,16 +1,15 @@
 #!/usr/bin/env python
-# written by brady [r3dact3d]
 import requests
 
 url = 'http://api.open-notify.org/astros.json'
-j = requests.get(url).json()
-number = j['number']
-people = j['people']
-
-print "=================================="
-print "Humans in space currently: %s" % number
+response = requests.get(url).json()
+number = response["number"]
+people = response["people"]
+output = f"There are {number} people in space."
+print("==================================")
+print(f"Humans in space currently: {number}")
 for i in range(0, number):
-    boat = j['people'][i]['craft']
-    name = j['people'][i]['name']
-    print "Craft: %s             Name: %s" % (boat, name)
-    print "---------------------------------------"
+    boat = people[i]["craft"]
+    name = people[i]["name"]
+    print(f"Craft: {boat}             Name: {name}")
+    print("---------------------------------------")
