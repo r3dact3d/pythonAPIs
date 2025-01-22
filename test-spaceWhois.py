@@ -32,7 +32,4 @@ def get_humans() -> List[dict]:
         astronaut_data.append( f"{name} is currently stationed on {craft}.")
     astronaut_data.append(f"There are {number_of_people} in space right now.")
     return astronaut_data
-  
-print(get_humans())
-
         
